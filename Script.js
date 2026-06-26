@@ -196,28 +196,52 @@ themeBtn.innerHTML='<i class="fa-solid fa-moon"></i>';
 // Premium Button (Temporary Demo)
 // ================================
 
-buyBtn.addEventListener("click",()=>{
+buyBtn.addEventListener("click", () => {
 
-const ok=confirm("Demo Version\n\nActivate Premium?");
+const options = {
 
-if(ok){
+key: "rzp_test_xxxxxxxxx",
+
+amount: 9900,
+
+currency: "INR",
+
+name: "YouTube Analyzer Pro",
+
+description: "Unlimited Monthly Access",
+
+image: "logo.png",
+
+handler: function(response){
+
+alert("Payment Successful");
 
 localStorage.setItem("premium","true");
 
-alert("Premium Activated ✅");
-
 usesLeft.innerHTML="Unlimited";
 
+},
+
+theme:{
+
+color:"#00b7ff"
+
+},
+
+prefill:{
+
+name:"",
+
+email:"",
+
+contact:""
+
 }
+
+};
+
+const rzp = new Razorpay(options);
+
+rzp.open();
 
 });
-
-// ================================
-// Premium Load
-// ================================
-
-if(isPremium()){
-
-usesLeft.innerHTML="Unlimited";
-
-}
